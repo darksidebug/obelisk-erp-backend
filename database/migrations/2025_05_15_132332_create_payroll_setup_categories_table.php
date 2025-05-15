@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payroll_categories', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->integer('status')->default(1);
+            $table->tinyInteger('status')->default(1);
             $table->integer('created_by')->default(1);
             $table->integer('updated_by')->default(1);
             $table->timestamps();

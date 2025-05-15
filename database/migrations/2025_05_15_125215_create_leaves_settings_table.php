@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('code');
             $table->string('name');
             $table->integer('consumable');
-            $table->integer('status')->default(1);
+            $table->tinyInteger('status')->default(1);
             $table->integer('created_by')->default(1);
             $table->integer('updated_by')->default(1);
             $table->timestamps();
