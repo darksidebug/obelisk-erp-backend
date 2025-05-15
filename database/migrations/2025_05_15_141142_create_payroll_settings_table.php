@@ -22,6 +22,9 @@ return new class extends Migration
             $table->tinyInteger('subject_for_tax')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
+            $table->integer('created_by')->default(1);
+            $table->integer('updated_by')->default(1);
+            $table->softDeletes('deleted_at');
         });
     }
 
