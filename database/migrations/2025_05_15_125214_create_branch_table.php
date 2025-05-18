@@ -21,13 +21,9 @@ return new class extends Migration
             $table->string('zipcode');
             $table->string('country');
             $table->timestamps();
-            $table->bigInteger('created_by')->unsigned()->default(1);
-            $table->bigInteger('updated_by')->unsigned()->default(1);
             $table->softDeletes('deleted_at');
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

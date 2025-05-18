@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payroll_categories', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('company_id')->unsigned()->default(1);
-            $table->string('type');
+        Schema::create('services_settings', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code');
+            $table->string('name');
+            $table->string('logo')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes('deleted_at');
-
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('payroll_categories');
+        Schema::dropIfExists('services_settings');
     }
 };

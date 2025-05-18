@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
             PayrollCategorySeeder::class,
             PayrollSetupSeeder::class,
             PayrollCutOffSeeder::class,
+            ServicesSetupSeeder::class,
+            MenuSetupSeeder::class,
+            ServiceAccessSeeder::class,
+            MenuAccessSeeder::class,
         ];
     }
 }

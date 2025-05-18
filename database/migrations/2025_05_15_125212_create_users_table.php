@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('avatar')->nullable();
             $table->string('last_name');
             $table->string('first_name');
@@ -21,14 +21,17 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('role_id');
-            $table->integer('user_group_id');
+            $table->integer('role_id')->unsigned();
+            $table->integer('user_group_id')->unsigned();
             $table->integer('company_id');
             $table->integer('branch_id');
             $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes('deleted_at');
+
+            $table->foreign('user_group_id')->references('id')->on('user_groups');
+            $table->foreign('role_id')->references('id')->on('user_roles');
         });
     }
 

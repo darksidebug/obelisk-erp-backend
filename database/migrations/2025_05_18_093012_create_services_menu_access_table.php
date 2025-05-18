@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_roles', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('description')->nullable();
+            $table->integer('services_id')->unsigned();
+            $table->integer('menu_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+
+            $table->foreign('services_id')->references('id')->on('services')->onDelete('cascade');
+            $table->foreign('menu_id')->references('id')->on('menu_settings');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_roles');
+        Schema::dropIfExists('menus');
     }
 };

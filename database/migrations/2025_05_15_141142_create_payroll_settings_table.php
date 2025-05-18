@@ -23,13 +23,9 @@ return new class extends Migration
             $table->tinyInteger('subject_for_tax')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
-            $table->bigInteger('created_by')->unsigned()->default(1);
-            $table->bigInteger('updated_by')->unsigned()->default(1);
             $table->softDeletes('deleted_at');
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

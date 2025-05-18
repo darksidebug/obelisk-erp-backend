@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('leave_settings', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('company_id')->unsigned()->default(1);
+        Schema::create('menu_settings', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('code');
-            $table->string('name');
-            $table->integer('consumable');
+            $table->string('menu');
+            $table->string('url');
+            $table->string('icon')->nullable();
+            $table->integer('services_settings_id')->unsigned();
+            $table->tinyInteger('type')->default(1);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes('deleted_at');
 
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('services_settings_id')->references('id')->on('services_settings')->onDelete('cascade');
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('leave_settings');
+        Schema::dropIfExists('menu_settings');
     }
 };
