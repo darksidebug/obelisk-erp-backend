@@ -21,7 +21,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'SSS',
@@ -30,7 +32,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'GSIS',
@@ -39,7 +43,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'HDMF',
@@ -48,7 +54,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'HMO',
@@ -57,7 +65,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Tax',
@@ -66,7 +76,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Tardiness',
@@ -75,7 +87,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'PA (Ded.)',
@@ -84,7 +98,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Other (Ded.)',
@@ -93,7 +109,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Basic Pay',
@@ -103,7 +121,9 @@ class PayrollSetupSeeder extends Seeder
                 'amount' => 0,
                 'is_percentage' => 0,
                 'subject_for_tax' => 0,
-                'subject_for_tax' => 1
+                'subject_for_tax' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Hourly Rate',
@@ -112,7 +132,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'RD OT',
@@ -121,7 +143,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 1,
                 'amount' => 30,
                 'is_percentage' => 1,
-                'subject_for_tax' => 1
+                'subject_for_tax' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Holiday OT',
@@ -130,7 +154,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 1,
                 'amount' => 30,
                 'is_percentage' => 1,
-                'subject_for_tax' => 1
+                'subject_for_tax' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => '13th Month',
@@ -139,7 +165,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Bonus',
@@ -148,7 +176,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Allowance',
@@ -157,7 +187,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'De minimis',
@@ -166,7 +198,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 1,
                 'amount' => 2500,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Night Diff.',
@@ -175,7 +209,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 1,
                 'amount' => 10,
                 'is_percentage' => 1,
-                'subject_for_tax' => 1
+                'subject_for_tax' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Hazard Pay',
@@ -184,7 +220,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 1,
                 'amount' => 1000,
                 'is_percentage' => 0,
-                'subject_for_tax' => 0
+                'subject_for_tax' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'PA (Earn.)',
@@ -193,7 +231,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 1
+                'subject_for_tax' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'abbrev' => 'Other (Earn.)',
@@ -202,7 +242,9 @@ class PayrollSetupSeeder extends Seeder
                 'is_fixed' => 0,
                 'amount' => 0,
                 'is_percentage' => 0,
-                'subject_for_tax' => 1
+                'subject_for_tax' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ];
 

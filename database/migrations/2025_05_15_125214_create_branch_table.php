@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('leave_settings', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('company_id')->unsigned()->default(1);
-            $table->string('code');
+            $table->bigInteger('company_id')->unsigned();
             $table->string('name');
-            $table->integer('consumable');
-            $table->tinyInteger('status')->default(1);
+            $table->string('email');
+            $table->string('contact');
+            $table->string('address');
+            $table->string('zipcode');
+            $table->string('country');
+            $table->timestamps();
             $table->bigInteger('created_by')->unsigned()->default(1);
             $table->bigInteger('updated_by')->unsigned()->default(1);
-            $table->timestamps();
             $table->softDeletes('deleted_at');
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('leave_settings');
+        Schema::dropIfExists('branches');
     }
 };

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,9 +18,16 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
         'email',
+        'last_name',
+        'first_name',
+        'middle_name',
+        'suffix',
+        'role_id',
+        'user_group_id',
+        'email_verified_at',
         'password',
+        'avatar',
     ];
 
     /**
@@ -44,5 +51,35 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(UserRole::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(UserGroup::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function getRoleName()
+    {
+        return $this->role?->name;
+    }
+
+    public function isSuperAdministrator()
+    {
+        return $this->getRoleName() === Role::ROLE_SUPER_ADMIN;
+    }
+
+    public function isAdministrator()
+    {
+        return $this->getRoleName() === Role::ROLE_ADMIN;
     }
 }

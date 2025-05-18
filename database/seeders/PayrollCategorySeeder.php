@@ -16,24 +16,38 @@ class PayrollCategorySeeder extends Seeder
         $seeder = [
             [
                 'type' => 'Contributions',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'type' => 'Deductions',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'type' => 'Tax',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
-                'type' => 'Other Deductions'
+                'type' => 'Other Deductions',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
-                'type' => 'Salary'
+                'type' => 'Salary',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
-                'type' => 'Earnings'
+                'type' => 'Earnings',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
-                'type' => 'Other Earnings'
+                'type' => 'Other Earnings',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ];
 

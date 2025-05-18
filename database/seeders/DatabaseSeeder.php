@@ -17,9 +17,15 @@ class DatabaseSeeder extends Seeder
     public function getSeeders()
     {
         return [
+            UserRoleSeeder::class,
+            UserGroupSeeder::class,
+            UserSeeder::class,
+            CompanySeeder::class,
+            BranchSeeder::class,
             LeaveSetupSeeder::class,
             PayrollCategorySeeder::class,
             PayrollSetupSeeder::class,
+            PayrollCutOffSeeder::class,
         ];
     }
 }
