@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\LeaveSetting;
+use App\Models\PayrollAndTimesheets\Setup\LeaveSetting;
 
 class LeaveSetupSeeder extends Seeder
 {

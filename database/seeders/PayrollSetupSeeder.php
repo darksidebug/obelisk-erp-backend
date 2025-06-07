@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\PayrollSetting;
+use App\Models\PayrollAndTimesheets\Setup\PayrollSetting;
 
 class PayrollSetupSeeder extends Seeder
 {

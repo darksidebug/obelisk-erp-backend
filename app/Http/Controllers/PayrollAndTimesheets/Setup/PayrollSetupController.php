@@ -23,7 +23,7 @@ class PayrollSetupController extends Controller
         try {
             $perPage = request()->get('per_page', 25);
             $filter = request()->get('filter', '');
-            $status = request()->get('sort', 'name');
+            $sort = request()->get('sort', 'name');
 
             return $payrollSetupService->list($perPage, $filter, $sort);
         } catch (\Exception $e) {

@@ -106,4 +106,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->getRoleName() === Role::ROLE_ADMIN;
     }
+
+    public function payroll_setup_user()
+    {
+        return $this->hasMany(PayrollSetting::class);
+    }
 }

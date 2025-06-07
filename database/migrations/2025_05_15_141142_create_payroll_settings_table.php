@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('company_id')->unsigned()->default(1);
             $table->string('abbrev');
             $table->string('name');
-            $table->tinyInteger('type');
+            $table->bigInteger('type')->unsigned();
             $table->tinyInteger('is_fixed')->default(0);
             $table->decimal('amount')->default(null);
             $table->tinyInteger('is_percentage')->default(0);
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->softDeletes('deleted_at');
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('type')->references('id')->on('payroll_categories');
         });
     }
 

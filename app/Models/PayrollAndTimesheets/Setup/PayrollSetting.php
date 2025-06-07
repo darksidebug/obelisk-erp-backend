@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PayrollSetting extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function category()
+    {
+        return $this->belongsTo(PayrollCategory::class);
+    }
 }

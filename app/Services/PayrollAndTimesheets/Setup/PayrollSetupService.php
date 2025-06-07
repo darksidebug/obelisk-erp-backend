@@ -7,6 +7,7 @@ use Spatie\QueryBuilder\Exceptions\InvalidSortQuery;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Models\PayrollAndTimesheets\Setup\PayrollSetting;
 use App\Models\PayrollAndTimesheets\Setup\PayrollCategory;
+use App\Services\CustomSort\CategoryTypeSort;
 
 class PayrollSetupService
 {
@@ -25,7 +26,7 @@ class PayrollSetupService
     public function list(int $perPage = 25, string $filter, string $sort)
     {
         try {
-            $payrollSetup = $this->orderLisQuery();
+            $payrollSetup = $this->payrollSetupListQuery();
             $payrollSetup = $this->filter($payrollSetup, $filter, $sort);
 
             return $payrollSetup->paginate($perPage);
@@ -70,33 +71,38 @@ class PayrollSetupService
     }
 
     /**
-    * Get Common Query for Order List
+    * Get Common Query for Payroll Setup List
     */
-    public function orderLisQuery()
+    public function payrollSetupListQuery()
     {
         return QueryBuilder::for(
             PayrollSetting::select(
-                'id',
-                'name',
-                'abbrev',
-                'type',
-                'is_fixed',
-                'amount',
-                'status'
+                'payroll_settings.id',
+                'payroll_settings.name',
+                'payroll_settings.abbrev',
+                'payroll_settings.company_id',
+                'payroll_settings.is_fixed',
+                'payroll_settings.amount',
+                'payroll_settings.status',
+                'payroll_settings.subject_for_tax',
+                'payroll_categories.type as type'
             )
+            ->leftJoin('payroll_categories', 'payroll_categories.id', '=', 'payroll_settings.type')
+            ->where('payroll_settings.company_id', '=', Auth()->user()->company_id)
         )
-        ->defaultSort('name')
+        ->defaultSort('payroll_settings.name')
         ->allowedSorts([
+            AllowedSort::custom('type', new CategoryTypeSort()),
             'abbrev',
-            'type',
             'is_fixed',
             'amount',
-            'status'
+            'status',
+            'name'
         ]);
     }
 
     /**
-    * $orderListQuery - parent query order list
+    * $orderListQuery - parent query payroll setup list
     * string $filter - search filter
     */
     private function filter($orderListQuery, $filter)
@@ -106,14 +112,15 @@ class PayrollSetupService
             $query->where(function($query) use($filters) {
                 foreach($filters as $filter)
                 {
-                    $query->where('abbrev', 'like', '%'. $filter .'%');
-                    $query->orWhere('name', 'like', '%'. $filter .'%');
+                    $query->where('payroll_settings.abbrev', 'like', '%'. $filter .'%');
+                    $query->orWhere('payroll_settings.name', 'like', '%'. $filter .'%');
+                    $query->orWhere('payroll_categories.type', 'like', '%'. $filter .'%');
                 }
             });
         });
     }
 
-    private function updateOrderDetailStatus($orderHeaderId, $status)
+    private function updatePayrollSetupStatus($id, $status)
     {
 
     }
