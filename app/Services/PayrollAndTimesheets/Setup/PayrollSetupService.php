@@ -13,16 +13,9 @@ class PayrollSetupService
 {
     public function __construct() 
     {
-        //
+        
     }
 
-    /**
-    * Get Order List
-    *
-    * int $perPage - Data per page count
-    * string $filter - Search filter
-    * string $sort - Sort query
-    */
     public function list(int $perPage = 25, string $filter, string $sort)
     {
         try {
@@ -35,44 +28,49 @@ class PayrollSetupService
         }
     }
 
-    /**
-    * Get order details
-    * int $id - Id of Order Header
-    */
     public function show($id)
     {
-
+        return PayrollSetting::findOrFail($id);
     }
 
-    /**
-    * Create record
-    */
-    public function create() 
+    public function create($abbrev, $name, $type, $is_fixed, $amount, $is_percentage, $subject_for_tax, $status) 
     {
-        //
+        return PayrollSetting::create([
+            'company_id' => Auth()->user()->company_id,
+            'abbrev' => $abbrev,
+            'name' => $name,
+            'type' => $type,
+            'is_fixed' => $is_fixed,
+            'amount' => $amount,
+            'is_percentage' => $is_percentage,
+            'subject_for_tax' => $subject_for_tax,
+            'status' => $status,
+            'created_by' => Auth()->user()->id,
+            'updated_by' => Auth()->user()->id
+        ]);
     }
     
-    /**
-    * Update order status
-    */
-    public function update($id, $status, $message, $files)
+
+    public function update($id, $abbrev, $name, $type, $is_fixed, $amount, $is_percentage, $subject_for_tax, $status)
     {
-        
+        return PayrollSetting::findOrFail($id)->update([
+            'abbrev' => $abbrev,
+            'name' => $name,
+            'type' => $type,
+            'is_fixed' => $is_fixed,
+            'amount' => $amount,
+            'is_percentage' => $is_percentage,
+            'subject_for_tax' => $subject_for_tax,
+            'status' => $status,
+            'updated_by' => Auth()->user()->id
+        ]);
     }
 
-    /**
-    * Batch update record
-    * @param array $ids - Order header ID's
-    * @param integer $status - Status to update
-    */
     public function batchUpdate($ids, $status)
     {
 
     }
 
-    /**
-    * Get Common Query for Payroll Setup List
-    */
     public function payrollSetupListQuery()
     {
         return QueryBuilder::for(
@@ -85,10 +83,16 @@ class PayrollSetupService
                 'payroll_settings.amount',
                 'payroll_settings.status',
                 'payroll_settings.subject_for_tax',
-                'payroll_categories.type as type'
+                'payroll_categories.type as type',
+                \DB::raw("CONCAT(creator.first_name, ' ', creator.last_name) as created_by"),
+                \DB::raw("CONCAT(updater.first_name, ' ', updater.last_name) as updated_by"),
+                'payroll_categories.updated_at'
             )
             ->leftJoin('payroll_categories', 'payroll_categories.id', '=', 'payroll_settings.type')
+            ->leftJoin('users as creator', 'creator.id', '=', 'payroll_settings.created_by')
+            ->leftJoin('users as updater', 'updater.id', '=', 'payroll_settings.updated_by')
             ->where('payroll_settings.company_id', '=', Auth()->user()->company_id)
+            ->where('payroll_settings.deleted_at', '=', null)
         )
         ->defaultSort('payroll_settings.name')
         ->allowedSorts([
@@ -101,10 +105,6 @@ class PayrollSetupService
         ]);
     }
 
-    /**
-    * $orderListQuery - parent query payroll setup list
-    * string $filter - search filter
-    */
     private function filter($orderListQuery, $filter)
     {
         $filters = explode(' ', $filter);
@@ -120,8 +120,18 @@ class PayrollSetupService
         });
     }
 
-    private function updatePayrollSetupStatus($id, $status)
+    private function bulkUpdate($ids, $status)
     {
+        return PayrollSetting::whereIn('id', $ids)->update(['status' => $status]);
+    }
 
+    private function bulkDelete($ids)
+    {
+        return PayrollSetting::whereIn('id', $ids)->delete();
+    }
+
+    public function delete($ids)
+    {
+        return PayrollSetting::findOrFail($id)->delete();
     }
 }

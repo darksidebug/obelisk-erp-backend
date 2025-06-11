@@ -10,6 +10,20 @@ class PayrollSetting extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'company_id',
+        'abbrev',
+        'name',
+        'type',
+        'is_fixed',
+        'amount',
+        'is_percentage',
+        'subject_for_tax',
+        'status',
+        'created_by',
+        'updated_by'
+    ];
+
     public function category()
     {
         return $this->belongsTo(PayrollCategory::class);

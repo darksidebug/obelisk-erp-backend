@@ -22,11 +22,15 @@ return new class extends Migration
             $table->tinyInteger('is_percentage')->default(0);
             $table->tinyInteger('subject_for_tax')->default(0);
             $table->tinyInteger('status')->default(1);
+            $table->integer('created_by')->unsigned()->default(1);
+            $table->integer('updated_by')->unsigned()->default(1);
             $table->timestamps();
             $table->softDeletes('deleted_at');
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->foreign('type')->references('id')->on('payroll_categories');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

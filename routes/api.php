@@ -14,10 +14,8 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['prefix' => 'payroll-and-timesheets'], function () {
     // Payroll Setup
     Route::apiResource('setup', PayrollSetupController::class);
-    // Route::post('setup', [PayrollSetupController::class, 'store']);
-    // Route::put('setup/{id}', [PayrollSetupController::class, 'update']);
-    // Route::delete('setup/{id}', [PayrollSetupController::class, 'destroy']);
-
+    Route::put('setup/update/statuses', [PayrollSetupController::class, 'batchUpdate']);
+    Route::post('setup/batch/delete', [PayrollSetupController::class, 'batchDelete']);
 });
 
 Route::group(['prefix' => 'payroll'], function () {
